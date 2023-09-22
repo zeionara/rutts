@@ -6,7 +6,7 @@ import numpy as np
 from huggingface_hub import snapshot_download
 
 class TTS:
-    def __init__(self, model_name: str, save_path: str = "./model", add_time_to_end: float = 0.8) -> None:
+    def __init__(self, model_name: str, save_path: str = "./model", add_time_to_end: float = 0.8, gpu: bool = False) -> None:
         if not os.path.exists(save_path):
             os.mkdir(save_path)
         
@@ -19,7 +19,7 @@ class TTS:
                               local_dir_use_symlinks=False
                             )
         
-        self.model = onnxruntime.InferenceSession(os.path.join(model_dir, "exported/model.onnx"), providers=['CPUExecutionProvider'])
+        self.model = onnxruntime.InferenceSession(os.path.join(model_dir, "exported/model.onnx"), providers=['CUDAExecutionProvider' if gpu else 'CPUExecutionProvider'])
         
         if os.path.exists(os.path.join(model_dir, "exported/dictionary.txt")):
             from .tokenizer import TokenizerG2P

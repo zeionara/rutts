@@ -23,5 +23,5 @@ setup(
   classifiers=classifiers,
   keywords='tts', 
   packages=find_packages(),
-  install_requires=['scipy', 'gruut', 'gruut-lang-ru', 'sounddevice', 'onnxruntime', 'huggingface-hub', "tok", "transformers", "numpy", "sentencepiece", "ruaccent"] 
+  install_requires=['scipy', 'gruut', 'gruut-lang-ru', 'sounddevice', 'onnxruntime-gpu', 'huggingface-hub', "tok", "transformers", "numpy", "sentencepiece", "ruaccent"] 
 )
